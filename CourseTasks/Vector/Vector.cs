@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Vector
 {
-    class Program
+    class Vector
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello!");
+            Console.ReadKey();
         }
     }
 }
