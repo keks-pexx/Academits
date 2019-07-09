@@ -48,7 +48,7 @@ namespace RangeTask
 
         static void Main(string[] args)
         {
-            int from = PrintAndRead("Введите начало диапазона: ");
+            int from = PrintAndRead( "Введите начало диапазона: ");
             int to = PrintAndRead("Введите конец диапазона: ");
             int number = PrintAndRead("Введите число: ");
 
