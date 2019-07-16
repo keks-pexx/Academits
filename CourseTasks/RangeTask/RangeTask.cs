@@ -19,7 +19,7 @@ namespace RangeTask
 
             Range range1 = new Range(from1, to1);
             Range range2 = new Range(from2, to2);
-            Range rangeI = range1.GetInterseсtion(range2);
+            Range rangeIntersection = range1.GetIntersection(range2);
 
             Console.WriteLine("Длина диапазона №1 равна: " + range1.GetLength());
 
@@ -32,13 +32,13 @@ namespace RangeTask
                 Console.WriteLine("Число не попадает в диапазон №1");
             }
 
-            if (rangeI == null)
+            if (rangeIntersection == null)
             {
                 Console.WriteLine("Диапазоны не пересекаются");
             }
             else
             {
-                Console.WriteLine("Пересечение: " + rangeI.From + " " + rangeI.To);
+                Console.WriteLine("Пересечение: " + rangeIntersection.From + " " + rangeIntersection.To);
             }
 
             foreach (Range e in range1.GetUnion(range2))
@@ -50,6 +50,7 @@ namespace RangeTask
             {
                 Console.WriteLine("Разность: " + e.From + " " + e.To);
             }
+
             Console.ReadKey();
         }
     }
