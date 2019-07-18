@@ -46,11 +46,18 @@ namespace RangeTask
                 Console.WriteLine("Объединение: " + e.From + " " + e.To);
             }
 
-            foreach (Range e in range1.GetDifference(range2))
+            Range[] rangeDifference = range1.GetDifference(range2);
+            if (rangeDifference.Length == 0)
             {
-                Console.WriteLine("Разность: " + e.From + " " + e.To);
+                Console.WriteLine("Разность равна 0");
             }
-
+            else
+            {
+                foreach (Range e in rangeDifference)
+                {
+                    Console.WriteLine("Разность: " + e.From + " " + e.To);
+                }
+            }
             Console.ReadKey();
         }
     }

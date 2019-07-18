@@ -48,7 +48,7 @@ namespace RangeTask
 
         public Range[] GetUnion(Range range)
         {
-            if (From >= range.To || To < range.From)
+            if (From > range.To || To < range.From)
             {
                 return new Range[] { new Range(From, To), new Range(range.From, range.To) };
             }
@@ -65,10 +65,15 @@ namespace RangeTask
 
             if (From < range.From && To <= range.To)
             {
-                return new Range[] { new Range(From, range.From) };
+                return new Range[] { };
             }
 
             if (From > range.From && To >= range.To)
+            {
+                return new Range[] { new Range(range.To, To) };
+            }
+
+            if (From >= range.From && To <= range.To)
             {
                 return new Range[] { new Range(range.To, To) };
             }
