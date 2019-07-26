@@ -37,6 +37,7 @@ namespace ShapeTask
             else return 0;
         }
     }
+
     class ShapeTask
     {
         static void Main(string[] args)
