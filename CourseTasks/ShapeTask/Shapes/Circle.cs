@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShapeTask
 {
@@ -14,7 +10,7 @@ namespace ShapeTask
         {
             this.radius = radius;
         }
-      
+
         public double GetWidth()
         {
             return radius * 2;
@@ -33,6 +29,34 @@ namespace ShapeTask
         public double GetPerimeter()
         {
             return 2 * Math.PI * radius;
+        }
+
+        public override string ToString()
+        {
+            return "Circle, s=" + GetArea() + ", p=" + GetPerimeter();
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == this)
+            {
+                return true;
+            }
+            if (obj == null || obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            Circle p = (Circle)obj;
+            return radius == p.radius;
+        }
+
+        public override int GetHashCode()
+        {
+            int prime = 37;
+            int hash = 1;
+            hash = prime * hash + radius.GetHashCode();
+            return hash;
         }
     }
 }

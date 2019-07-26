@@ -6,34 +6,55 @@ using System.Threading.Tasks;
 
 namespace ShapeTask
 {
+    class AreaComparer : IComparer<IShape>
+    {
+        public int Compare(IShape shape1, IShape shape2)
+        {
+            if (shape1.GetArea() > shape2.GetArea())
+            {
+                return 1;
+            }
+            else if (shape1.GetArea() < shape2.GetArea())
+            {
+                return -1;
+            }
+            else return 0;
+        }
+    }
+
+    class PerimeterComparer : IComparer<IShape>
+    {
+        public int Compare(IShape shape1, IShape shape2)
+        {
+            if (shape1.GetPerimeter() > shape2.GetPerimeter())
+            {
+                return 1;
+            }
+            else if (shape1.GetPerimeter() < shape2.GetPerimeter())
+            {
+                return -1;
+            }
+            else return 0;
+        }
+    }
     class ShapeTask
     {
-        public static void PrintShape(IShape shape)
-        {
-            Console.WriteLine("Ширина фигуры: " + shape.GetWidth());
-            Console.WriteLine("Высота фигуры: " + shape.GetHeight());
-            Console.WriteLine("Площадь фигуры: " + shape.GetArea());
-            Console.WriteLine("Периметр фигуры: " + shape.GetPerimeter());
-        }
-
-        public static IShape GetMaxArea(IShape[] shape)
-        {
-            int iMaxArea = 0;
-            for (int i = 1; i < shape.Length; i++)
-            {
-                if (shape[i].GetArea() > shape[iMaxArea].GetArea())
-                {
-                    iMaxArea = i;
-                }
-            }
-
-            return shape[iMaxArea];
-        }
-
         static void Main(string[] args)
         {
             IShape[] shapes = { new Rectangle(8, 5), new Square(7), new Circle(10), new Triangle(1, 2, 6, 8, 2, 11), new Rectangle(4, 7), new Square(9), new Circle(5) };
-            PrintShape(GetMaxArea(shapes));
+
+            Console.WriteLine("Печатаем для проверки");
+            foreach (IShape e in shapes)
+            {
+                Console.WriteLine(e.ToString());
+            }
+
+            Array.Sort(shapes, new AreaComparer());
+            Console.WriteLine("Максимальная площадь у фигуры: " + shapes[shapes.Length - 1].ToString());
+
+            Array.Sort(shapes, new PerimeterComparer());
+            Console.WriteLine("Второй по величине периметр у  фигуры: " + shapes[shapes.Length - 2].ToString());
+
             Console.ReadKey();
         }
     }
