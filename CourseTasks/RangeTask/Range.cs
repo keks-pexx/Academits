@@ -59,9 +59,9 @@ namespace RangeTask
         public Range[] GetDifference(Range range)
         {
             //1
-            if (From < range.From && To <= range.To && range.From < To)
+            if (From >= range.To || range.From >= To)
             {
-                return new Range[] { new Range(From, range.From) };
+                return new Range[] { new Range(From, To) };
             }
             //2
             if (From < range.From && To > range.To)
@@ -69,17 +69,17 @@ namespace RangeTask
                 return new Range[] { new Range(From, range.From), new Range(To, range.To) };
             }
             //3
-            if (From >= range.From && To > range.To)
-            {
-                return new Range[] { new Range(range.To, To) };
-            }
-            //4
             if (From >= range.From && To <= range.To)
             {
                 return new Range[] { };
             }
-            //5, 6
-            return new Range[] { new Range(From, To) };
+            //4
+            if (From < range.From && To <= range.To)
+            {
+                return new Range[] { new Range(range.From, To) };
+            }
+            //5
+            return new Range[] { new Range(From, range.To) };
         }
     }
 }
