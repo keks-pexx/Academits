@@ -55,31 +55,30 @@ namespace RangeTask
 
             return new Range[] { new Range(Math.Min(From, range.From), Math.Max(To, range.To)) };
         }
-
         public Range[] GetDifference(Range range)
         {
             //1
-            if (From >= range.To || range.From >= To)
+            if (From > range.To || range.From > To)
             {
                 return new Range[] { new Range(From, To) };
             }
             //2
             if (From < range.From && To > range.To)
             {
-                return new Range[] { new Range(From, range.From), new Range(To, range.To) };
+                return new Range[] { new Range(From, range.From), new Range(range.To, To) };
             }
             //3
             if (From >= range.From && To <= range.To)
             {
-                return new Range[] { };
+                return new Range[0];
             }
             //4
-            if (From < range.From && To <= range.To)
+            if (From <= range.From && To <= range.To)
             {
-                return new Range[] { new Range(range.From, To) };
+                return new Range[] { new Range(From, range.From) };
             }
             //5
-            return new Range[] { new Range(From, range.To) };
+            return new Range[] { new Range(range.To, To) };
         }
     }
 }
