@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vector", "Vector\Vector.csproj", "{911936A8-F6B6-4DE5-BE07-1635AE550121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorTask", "Vector\VectorTask.csproj", "{911936A8-F6B6-4DE5-BE07-1635AE550121}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangeTask", "RangeTask\RangeTask.csproj", "{C271D37A-DE63-45C1-A558-3A2DB23D9BE4}"
 EndProject

@@ -13,8 +13,8 @@ namespace ShapeTask
         private double sideA;
         private double sideB;
         private double sideC;
-        
-        private double GetSide(double x1, double y1, double x2, double y2)
+
+        private static double GetSide(double x1, double y1, double x2, double y2)
         {
             return Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
         }
@@ -55,7 +55,8 @@ namespace ShapeTask
 
         public override string ToString()
         {
-            return "Triangle, s=" + GetArea() + ", p=" + GetPerimeter();
+            return "Triangle x1=" + x1 + " y1=" + y1 + " x2=" + x2 + " y2=" + y2 + " x3=" + x3 + " y3=" + y3 +
+                "s=" + GetArea() + ", p=" + GetPerimeter();
         }
 
         public override bool Equals(object obj)

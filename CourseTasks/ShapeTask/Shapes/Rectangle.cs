@@ -35,7 +35,7 @@ namespace ShapeTask
 
         public override string ToString()
         {
-            return "Rectangle, s=" + GetArea() + ", p=" + GetPerimeter();
+            return "Rectangle w=" + width + " h=" + height + " s=" + GetArea() + " p=" + GetPerimeter();
         }
 
         public override bool Equals(object obj)

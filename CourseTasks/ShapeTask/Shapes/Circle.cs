@@ -33,7 +33,7 @@ namespace ShapeTask
 
         public override string ToString()
         {
-            return "Circle, s=" + GetArea() + ", p=" + GetPerimeter();
+            return "Circle r=" + radius + " s=" + GetArea() + " p=" + GetPerimeter();
         }
 
         public override bool Equals(object obj)

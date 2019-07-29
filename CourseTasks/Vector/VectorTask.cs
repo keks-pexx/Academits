@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vector
+namespace VectorTask
 {
-    class Vector
+    class VectorTask
     {
         static void Main(string[] args)
         {
