@@ -10,7 +10,14 @@ namespace VectorTask
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello!");
+            double[] array = { 4, 25, 18, 17, 32 };
+            Vector vector1 = new Vector(6, array);
+            Vector vector2 = new Vector(vector1);
+
+            Console.WriteLine(vector1.GetSize());
+            Console.WriteLine(vector2);
+            Console.WriteLine(vector1.GetHashCode());
+            Console.WriteLine(vector1.Equals(vector2));
             Console.ReadKey();
         }
     }
