@@ -8,7 +8,7 @@ namespace VectorTask
 {
     class Vector
     {
-        private double[] Values { get; set; }
+        double[] Values { get; set; }
 
         public Vector(int n)
         {
@@ -27,8 +27,12 @@ namespace VectorTask
                 throw new ArgumentException("длинна вектора должна быть > 0", nameof(vector.Values.Length));
             }
 
-            Values = new double[vector.Values.Length];
-            Array.Copy(vector.Values, Values, vector.Values.Length);
+            Values = new double[vector.GetSize()];
+            for (int i = 0; i < vector.GetSize(); i++)
+            {
+                Values[i] = vector.Values[i];
+            }
+            //Array.Copy(vector.Values, Values, vector.Values.Length);
         }
 
         public Vector(double[] array)
@@ -39,7 +43,10 @@ namespace VectorTask
             }
 
             Values = new double[array.Length];
-            Array.Copy(array, Values, array.Length);
+            for (int i = 0; i < array.Length; i++)
+            {
+                Values[i] = array[i];
+            }
         }
 
         public Vector(int n, double[] array)
@@ -50,7 +57,20 @@ namespace VectorTask
             }
 
             Values = new double[n];
-            Array.Copy(array, Values, array.Length);
+            if (n < array.Length)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    Values[i] = array[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Values[i] = array[i];
+                }
+            }
         }
 
         public int GetSize()
@@ -70,15 +90,17 @@ namespace VectorTask
             return sb.ToString();
         }
 
-        private static bool ArrayEquals(double[] a1, double[] a2)
+        private bool ArrayEquals(double[] a1, double[] a2)
         {
             if (a1.Length != a2.Length)
             {
                 return false;
             }
+
+            const double epsilon = 1.0e-10;
             for (int i = 0; i < a1.Length; i++)
             {
-                if (a1[i] != a2[i])
+                if (Math.Abs(a1[i] - a2[i]) > epsilon)
                 {
                     return false;
                 }
@@ -93,6 +115,7 @@ namespace VectorTask
             {
                 return true;
             }
+
             if (obj == null || obj.GetType() != GetType())
             {
                 return false;
@@ -111,7 +134,7 @@ namespace VectorTask
             {
                 hash = prime * hash + Values[i].GetHashCode();
             }
-         
+
             return hash;
         }
 
@@ -122,7 +145,123 @@ namespace VectorTask
                 throw new ArgumentException("длинна вектора должна быть > 0", nameof(vector.Values.Length));
             }
 
-            return vector;
+            if (GetSize() >= vector.GetSize())
+            {
+                for (int i = 0; i < vector.GetSize(); i++)
+                {
+                    Values[i] = Values[i] + vector.Values[i];
+                }
+                return this;
+            }
+
+            double[] ValuesResult = new double[vector.GetSize()];
+
+            for (int i = 0; i < vector.GetSize(); i++)
+            {
+                ValuesResult[i] = vector.Values[i];
+            }
+
+            for (int i = 0; i < GetSize(); i++)
+            {
+                ValuesResult[i] = ValuesResult[i] + Values[i];
+            }
+            Values = ValuesResult;
+            return this;
+        }
+
+        public Vector SubtractVector(Vector vector)
+        {
+            if (vector.Values.Length == 0)
+            {
+                throw new ArgumentException("длинна вектора должна быть > 0", nameof(vector.Values.Length));
+            }
+
+            if (GetSize() >= vector.GetSize())
+            {
+                for (int i = 0; i < vector.GetSize(); i++)
+                {
+                    Values[i] = Values[i] - vector.Values[i];
+                }
+                return this;
+            }
+
+            double[] ValuesResult = new double[vector.GetSize()];
+
+            for (int i = 0; i < vector.GetSize(); i++)
+            {
+                ValuesResult[i] = vector.Values[i];
+            }
+
+            for (int i = 0; i < GetSize(); i++)
+            {
+                ValuesResult[i] = ValuesResult[i] - Values[i];
+            }
+            Values = ValuesResult;
+            return this;
+        }
+
+        public Vector ScalarMultiplication(double scalar)
+        {
+            for (int i = 0; i < GetSize(); i++)
+            {
+                Values[i] = Values[i] * scalar;
+            }
+            return this;
+        }
+
+        public Vector Reverse()
+        {
+            for (int i = 0; i < GetSize(); i++)
+            {
+                Values[i] = Values[i] * (-1);
+            }
+            return this;
+        }
+
+        public double GetVectorLength()
+        {
+            double squareLength = 0;
+            for (int i = 0; i < GetSize(); i++)
+            {
+                squareLength = squareLength + Math.Pow(Values[i], 2);
+            }
+            return Math.Abs(Math.Sqrt(squareLength));
+        }
+
+        public double GetValue(int index)
+        {
+            return Values[index];
+        }
+
+        public Vector SetValue(double value, int index)
+        {
+            Values[index] = value;
+            return this;
+        }
+
+        public static Vector GetVectorSumm(Vector vector1, Vector vector2)
+        {
+            Vector vectorResult = new Vector(vector1);
+            return vectorResult.AddVector(vector2);
+        }
+
+        public static Vector GetVectorDifference(Vector vector1, Vector vector2)
+        {
+            Vector vectorResult = new Vector(vector1);
+            return vectorResult.SubtractVector(vector2);
+        }
+
+        public static Vector GetVectorMultiplication(Vector vector1, Vector vector2)
+        {
+            int vectorMaxSize = Math.Max(vector1.GetSize(), vector2.GetSize());
+            int vectorMinSize = Math.Min(vector1.GetSize(), vector2.GetSize());
+            Vector vectorResult = new Vector(vectorMaxSize);
+            for (int i = 0; i < vectorMinSize; i++)
+            {
+                vectorResult.Values[i] = vector1.Values[i] * vector2.Values[i];
+            }
+
+            return vectorResult;
         }
     }
 }

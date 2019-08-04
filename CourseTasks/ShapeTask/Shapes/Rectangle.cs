@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShapeTask
+﻿namespace ShapeTask.Shapes
 {
     public class Rectangle : IShape
     {

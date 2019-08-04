@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShapeTask
+namespace ShapeTask.Shapes
 {
     public class Triangle : IShape
     {
