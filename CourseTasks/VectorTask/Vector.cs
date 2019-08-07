@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace VectorTask
 {
     class Vector
     {
-        double[] Values { get; set; }
+        private double[] Values { get; set; }
 
         public Vector(int n)
         {
@@ -28,11 +25,7 @@ namespace VectorTask
             }
 
             Values = new double[vector.GetSize()];
-            for (int i = 0; i < vector.GetSize(); i++)
-            {
-                Values[i] = vector.Values[i];
-            }
-            //Array.Copy(vector.Values, Values, vector.Values.Length);
+            Array.Copy(vector.Values, 0, Values, 0, vector.GetSize());
         }
 
         public Vector(double[] array)
@@ -43,10 +36,7 @@ namespace VectorTask
             }
 
             Values = new double[array.Length];
-            for (int i = 0; i < array.Length; i++)
-            {
-                Values[i] = array[i];
-            }
+            Array.Copy(array, 0, Values, 0, array.Length);
         }
 
         public Vector(int n, double[] array)
@@ -57,20 +47,7 @@ namespace VectorTask
             }
 
             Values = new double[n];
-            if (n < array.Length)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    Values[i] = array[i];
-                }
-            }
-            else
-            {
-                for (int i = 0; i < array.Length; i++)
-                {
-                    Values[i] = array[i];
-                }
-            }
+            Array.Copy(array, 0, Values, 0, Math.Min(n, array.Length));
         }
 
         public int GetSize()
@@ -81,9 +58,9 @@ namespace VectorTask
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < Values.Length; i++)
+            foreach (double e in Values)
             {
-                sb.Append(Values[i]).Append(", ");
+                sb.Append(e + ", ");
             }
 
             sb.Remove(sb.Length - 2, 2);
@@ -97,10 +74,9 @@ namespace VectorTask
                 return false;
             }
 
-            const double epsilon = 1.0e-10;
             for (int i = 0; i < a1.Length; i++)
             {
-                if (Math.Abs(a1[i] - a2[i]) > epsilon)
+                if (a1[i] != a2[i])
                 {
                     return false;
                 }
@@ -122,7 +98,7 @@ namespace VectorTask
             }
 
             Vector p = (Vector)obj;
-            return GetSize() == p.GetSize() && ArrayEquals(Values, p.Values);
+            return ArrayEquals(Values, p.Values);
         }
 
         public override int GetHashCode()
@@ -130,9 +106,11 @@ namespace VectorTask
             int prime = 37;
             int hash = 1;
             hash = prime * hash + GetSize();
-            for (int i = 0; i < GetSize(); i++)
+
+
+            foreach (double e in Values)
             {
-                hash = prime * hash + Values[i].GetHashCode();
+                hash = prime * hash + e.GetHashCode();
             }
 
             return hash;
@@ -140,92 +118,57 @@ namespace VectorTask
 
         public Vector AddVector(Vector vector)
         {
-            if (vector.Values.Length == 0)
-            {
-                throw new ArgumentException("длинна вектора должна быть > 0", nameof(vector.Values.Length));
-            }
+            double[] valuesResult = new double[Math.Max(GetSize(), vector.GetSize())];
 
-            if (GetSize() >= vector.GetSize())
-            {
-                for (int i = 0; i < vector.GetSize(); i++)
-                {
-                    Values[i] = Values[i] + vector.Values[i];
-                }
-                return this;
-            }
-
-            double[] ValuesResult = new double[vector.GetSize()];
-
+            Array.Copy(Values, 0, valuesResult, 0, GetSize());
             for (int i = 0; i < vector.GetSize(); i++)
             {
-                ValuesResult[i] = vector.Values[i];
+                valuesResult[i] += vector.Values[i];
             }
 
-            for (int i = 0; i < GetSize(); i++)
-            {
-                ValuesResult[i] = ValuesResult[i] + Values[i];
-            }
-            Values = ValuesResult;
+            Values = valuesResult;
             return this;
         }
 
         public Vector SubtractVector(Vector vector)
         {
-            if (vector.Values.Length == 0)
+            int vectorMinSize = Math.Min(GetSize(), vector.GetSize());
+            double[] valuesResult = new double[Math.Max(GetSize(), vector.GetSize())];
+
+            Array.Copy(Values, 0, valuesResult, 0, GetSize());
+            for (int i = 0; i < vectorMinSize; i++)
             {
-                throw new ArgumentException("длинна вектора должна быть > 0", nameof(vector.Values.Length));
+                valuesResult[i] -= vector.Values[i];
             }
 
-            if (GetSize() >= vector.GetSize())
-            {
-                for (int i = 0; i < vector.GetSize(); i++)
-                {
-                    Values[i] = Values[i] - vector.Values[i];
-                }
-                return this;
-            }
-
-            double[] ValuesResult = new double[vector.GetSize()];
-
-            for (int i = 0; i < vector.GetSize(); i++)
-            {
-                ValuesResult[i] = vector.Values[i];
-            }
-
-            for (int i = 0; i < GetSize(); i++)
-            {
-                ValuesResult[i] = ValuesResult[i] - Values[i];
-            }
-            Values = ValuesResult;
+            Values = valuesResult;
             return this;
         }
 
-        public Vector ScalarMultiplication(double scalar)
+        public Vector MultiplicateVector(double scalar)
         {
             for (int i = 0; i < GetSize(); i++)
             {
                 Values[i] = Values[i] * scalar;
             }
+
             return this;
         }
 
         public Vector Reverse()
         {
-            for (int i = 0; i < GetSize(); i++)
-            {
-                Values[i] = Values[i] * (-1);
-            }
-            return this;
+            return MultiplicateVector(-1);
         }
 
         public double GetVectorLength()
         {
             double squareLength = 0;
-            for (int i = 0; i < GetSize(); i++)
+            foreach (double e in Values)
             {
-                squareLength = squareLength + Math.Pow(Values[i], 2);
+                squareLength += Math.Pow(e, 2);
             }
-            return Math.Abs(Math.Sqrt(squareLength));
+
+            return Math.Sqrt(squareLength);
         }
 
         public double GetValue(int index)
@@ -233,13 +176,13 @@ namespace VectorTask
             return Values[index];
         }
 
-        public Vector SetValue(double value, int index)
+        public Vector SetValue(int index, double value)
         {
             Values[index] = value;
             return this;
         }
 
-        public static Vector GetVectorSumm(Vector vector1, Vector vector2)
+        public static Vector GetVectorSum(Vector vector1, Vector vector2)
         {
             Vector vectorResult = new Vector(vector1);
             return vectorResult.AddVector(vector2);
@@ -251,17 +194,16 @@ namespace VectorTask
             return vectorResult.SubtractVector(vector2);
         }
 
-        public static Vector GetVectorMultiplication(Vector vector1, Vector vector2)
+        public static double GetVectorScalarMultiplication(Vector vector1, Vector vector2)
         {
-            int vectorMaxSize = Math.Max(vector1.GetSize(), vector2.GetSize());
             int vectorMinSize = Math.Min(vector1.GetSize(), vector2.GetSize());
-            Vector vectorResult = new Vector(vectorMaxSize);
+            double sum = 0;
             for (int i = 0; i < vectorMinSize; i++)
             {
-                vectorResult.Values[i] = vector1.Values[i] * vector2.Values[i];
+                sum += vector1.Values[i] * vector2.Values[i];
             }
 
-            return vectorResult;
+            return sum;
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VectorTask
 {
@@ -13,7 +9,7 @@ namespace VectorTask
             double[] array1 = { 4, 25, 18, 17, 32 };
             double[] array2 = { 5, 67, 21, 12, 32 };
 
-            Vector vector1 = new Vector(5, array1);
+            Vector vector1 = new Vector(6, array1);
             Vector vector2 = new Vector(4, array2);
             Vector vector3 = new Vector(vector1);
 
@@ -30,14 +26,12 @@ namespace VectorTask
             Console.WriteLine("Добавляем вектор 2 к 1: " + vector1.AddVector(vector2));
             Console.WriteLine("Вычитаем вектор 2 из 3: " + vector3.SubtractVector(vector2));
 
-            Vector vector4 = Vector.GetVectorSumm(vector2, vector3);
+            Vector vector4 = Vector.GetVectorSum(vector2, vector3);
             Console.WriteLine("Сумма вектора 2 и 3 (Вектор4): " + vector4);
 
-            Vector vector5 = Vector.GetVectorSumm(vector4, vector3);
+            Vector vector5 = Vector.GetVectorSum(vector4, vector3);
             Console.WriteLine("Разность векторов 4 из 3 (Вектор5): " + vector5);
-
-            Vector vector6 = Vector.GetVectorMultiplication(vector2, vector5);
-            Console.WriteLine("Произведение векторов 2 из 5 (Вектор6): " + vector6);
+            Console.WriteLine("Произведение векторов 2 из 5: " + Vector.GetVectorScalarMultiplication(vector2, vector5));
 
             Console.ReadKey();
         }

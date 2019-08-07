@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorTask", "Vector\VectorTask.csproj", "{911936A8-F6B6-4DE5-BE07-1635AE550121}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangeTask", "RangeTask\RangeTask.csproj", "{C271D37A-DE63-45C1-A558-3A2DB23D9BE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShapeTask", "ShapeTask\ShapeTask.csproj", "{C88555B3-2E4A-4914-880C-7EF53A76124B}"
@@ -17,16 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListHome_2", "ArrayLis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListHome_3", "ArrayListHome_3\ArrayListHome_3.csproj", "{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VectorTask", "VectorTask\VectorTask.csproj", "{911936A8-F6B6-4DE5-BE07-1635AE550121}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C271D37A-DE63-45C1-A558-3A2DB23D9BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C271D37A-DE63-45C1-A558-3A2DB23D9BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C271D37A-DE63-45C1-A558-3A2DB23D9BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -47,6 +43,10 @@ Global
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{911936A8-F6B6-4DE5-BE07-1635AE550121}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
