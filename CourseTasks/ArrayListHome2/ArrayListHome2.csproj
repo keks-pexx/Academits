@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}</ProjectGuid>
+    <ProjectGuid>{99DAFFB3-9C0F-4D33-B0BF-0016AF5858A7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ArrayListHome_3</RootNamespace>
-    <AssemblyName>ArrayListHome_3</AssemblyName>
+    <RootNamespace>ArrayListHome2</RootNamespace>
+    <AssemblyName>ArrayListHome2</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayListHome_3.cs" />
+    <Compile Include="ArrayListHome2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

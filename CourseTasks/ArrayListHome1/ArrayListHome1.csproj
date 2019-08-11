@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{9AB812A6-93BE-42B4-A7C1-F97B0144D918}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ArrayListHome_1</RootNamespace>
-    <AssemblyName>ArrayListHome_1</AssemblyName>
+    <RootNamespace>ArrayListHome1</RootNamespace>
+    <AssemblyName>ArrayListHome1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayListHome_1.cs" />
+    <Compile Include="ArrayListHome1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

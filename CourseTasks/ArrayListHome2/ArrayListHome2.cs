@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ArrayListHome_2
+namespace ArrayListHome2
 {
-    class ArrayListHome_2
+    class ArrayListHome2
     {
         static void Main(string[] args)
         {
