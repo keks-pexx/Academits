@@ -9,8 +9,8 @@ namespace VectorTask
             double[] array1 = { 4, 25, 18, 17, 32 };
             double[] array2 = { 5, 67, 21, 12, 32 };
 
-            Vector vector1 = new Vector(6, array1);
-            Vector vector2 = new Vector(4, array2);
+            Vector vector1 = new Vector(4, array1);
+            Vector vector2 = new Vector(6, array2);
             Vector vector3 = new Vector(vector1);
 
             Console.WriteLine("Вектор1: " + vector1);
@@ -31,7 +31,7 @@ namespace VectorTask
 
             Vector vector5 = Vector.GetVectorSum(vector4, vector3);
             Console.WriteLine("Разность векторов 4 из 3 (Вектор5): " + vector5);
-            Console.WriteLine("Произведение векторов 2 из 5: " + Vector.GetVectorScalarMultiplication(vector2, vector5));
+            Console.WriteLine("Произведение векторов 2 из 5: " + Vector.GetScalarMultiplication(vector2, vector5));
 
             Console.ReadKey();
         }

@@ -60,7 +60,8 @@ namespace VectorTask
             StringBuilder sb = new StringBuilder();
             foreach (double e in Values)
             {
-                sb.Append(e + ", ");
+                sb.Append(e);
+                sb.Append(", ");
             }
 
             sb.Remove(sb.Length - 2, 2);
@@ -107,7 +108,6 @@ namespace VectorTask
             int hash = 1;
             hash = prime * hash + GetSize();
 
-
             foreach (double e in Values)
             {
                 hash = prime * hash + e.GetHashCode();
@@ -118,34 +118,39 @@ namespace VectorTask
 
         public Vector AddVector(Vector vector)
         {
-            double[] valuesResult = new double[Math.Max(GetSize(), vector.GetSize())];
-
-            Array.Copy(Values, 0, valuesResult, 0, GetSize());
-            for (int i = 0; i < vector.GetSize(); i++)
+            if (GetSize() < vector.GetSize())
             {
-                valuesResult[i] += vector.Values[i];
+                double[] valuesResult = new double[vector.GetSize()];
+                Array.Copy(Values, 0, valuesResult, 0, GetSize());
+                Values = valuesResult;
             }
 
-            Values = valuesResult;
+            for (int i = 0; i < GetSize(); i++)
+            {
+                Values[i] += vector.Values[i];
+            }
+                   
             return this;
         }
 
         public Vector SubtractVector(Vector vector)
         {
-            int vectorMinSize = Math.Min(GetSize(), vector.GetSize());
-            double[] valuesResult = new double[Math.Max(GetSize(), vector.GetSize())];
-
-            Array.Copy(Values, 0, valuesResult, 0, GetSize());
-            for (int i = 0; i < vectorMinSize; i++)
+            if (GetSize() < vector.GetSize())
             {
-                valuesResult[i] -= vector.Values[i];
+                double[] valuesResult = new double[vector.GetSize()];
+                Array.Copy(Values, 0, valuesResult, 0, GetSize());
+                Values = valuesResult;
             }
 
-            Values = valuesResult;
+            for (int i = 0; i < GetSize(); i++)
+            {
+                Values[i] -= vector.Values[i];
+            }
+
             return this;
         }
 
-        public Vector MultiplicateVector(double scalar)
+        public Vector Multiply(double scalar)
         {
             for (int i = 0; i < GetSize(); i++)
             {
@@ -157,12 +162,13 @@ namespace VectorTask
 
         public Vector Reverse()
         {
-            return MultiplicateVector(-1);
+            return Multiply(-1);
         }
 
         public double GetVectorLength()
         {
             double squareLength = 0;
+
             foreach (double e in Values)
             {
                 squareLength += Math.Pow(e, 2);
@@ -194,10 +200,11 @@ namespace VectorTask
             return vectorResult.SubtractVector(vector2);
         }
 
-        public static double GetVectorScalarMultiplication(Vector vector1, Vector vector2)
+        public static double GetScalarMultiplication(Vector vector1, Vector vector2)
         {
             int vectorMinSize = Math.Min(vector1.GetSize(), vector2.GetSize());
             double sum = 0;
+
             for (int i = 0; i < vectorMinSize; i++)
             {
                 sum += vector1.Values[i] * vector2.Values[i];
