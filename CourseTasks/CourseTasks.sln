@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListHome2", "ArrayList
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListHome3", "ArrayListHome3\ArrayListHome3.csproj", "{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTask", "ListTask\ListTask.csproj", "{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
