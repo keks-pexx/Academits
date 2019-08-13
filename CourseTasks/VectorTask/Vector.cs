@@ -19,11 +19,6 @@ namespace VectorTask
 
         public Vector(Vector vector)
         {
-            if (vector.Values.Length == 0)
-            {
-                throw new ArgumentException("длинна вектора должна быть > 0", nameof(vector.Values.Length));
-            }
-
             Values = new double[vector.GetSize()];
             Array.Copy(vector.Values, 0, Values, 0, vector.GetSize());
         }
@@ -125,11 +120,11 @@ namespace VectorTask
                 Values = valuesResult;
             }
 
-            for (int i = 0; i < GetSize(); i++)
+            for (int i = 0; i < vector.GetSize(); i++)
             {
                 Values[i] += vector.Values[i];
             }
-                   
+
             return this;
         }
 
@@ -142,7 +137,7 @@ namespace VectorTask
                 Values = valuesResult;
             }
 
-            for (int i = 0; i < GetSize(); i++)
+            for (int i = 0; i < vector.GetSize(); i++)
             {
                 Values[i] -= vector.Values[i];
             }
@@ -154,7 +149,7 @@ namespace VectorTask
         {
             for (int i = 0; i < GetSize(); i++)
             {
-                Values[i] = Values[i] * scalar;
+                Values[i] *= scalar;
             }
 
             return this;
