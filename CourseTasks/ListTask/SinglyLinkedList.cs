@@ -6,50 +6,54 @@ namespace ListTask
     class SinglyLinkedList<T>
     {
         private ListItem<T> Head { get; set; }
-        private int Count { get; set; }
-
-        public SinglyLinkedList() { }
-
-        public int GetSize()
-        {
-            return Count;
-        }
+        public int Count { get; set; }
 
         public T GetFirstValue()
         {
+            if (Count == 0)
+            {
+                throw new IndexOutOfRangeException("Список пуст");
+            }
+
             return Head.Data;
         }
 
-        public T GetValue(int index)
+        private ListItem<T> Iterate(int index)
         {
-            if (index > Count)
+            if (index > Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
             int n = 0;
+
             for (ListItem<T> p = Head; p != null; p = p.Next)
             {
                 if (n == index)
                 {
-                    return p.Data;
+                    return p;
                 }
-
                 n++;
             }
 
-            return default(T);
+            return null;
+        }
+
+        public T GetValue(int index)
+        {
+            return Iterate(index).Data; ;
         }
 
         public T Change(int index, T data)
         {
-            T oldValue = GetValue(index);
+            T oldValue = default(T);
             int n = 0;
 
             for (ListItem<T> p = Head; p != null; p = p.Next)
             {
                 if (n == index)
                 {
+                    oldValue = p.Data;
                     p.Data = data;
                 }
 
@@ -61,13 +65,14 @@ namespace ListTask
 
         public T Delete(int index)
         {
-            T oldValue = GetValue(index);
+            T oldValue = default(T);
             int n = 0;
 
             for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
             {
                 if (n == index)
                 {
+                    oldValue = p.Data;
                     prev.Next = p.Next;
                     Count--;
                 }
@@ -78,17 +83,21 @@ namespace ListTask
             return oldValue;
         }
 
-        public void Add(T data)
+        public void AddToBegin(T data)
         {
-            ListItem<T> listItem = new ListItem<T>(data);
+            ListItem<T> listItem = new ListItem<T>(data, Head);
 
-            listItem.Next = Head;
             Head = listItem;
             Count++;
         }
 
         public void AddByIndex(int index, T data)
         {
+            if (index > Count - 1 && index < 0)
+            {
+                throw new IndexOutOfRangeException("index выходит за границы списка");
+            }
+
             ListItem<T> listItem = new ListItem<T>(data);
             int n = 0;
 
@@ -99,6 +108,7 @@ namespace ListTask
                     prev.Next = listItem;
                     listItem.Next = p;
                     Count++;
+                    break;
                 }
 
                 n++;
@@ -109,7 +119,7 @@ namespace ListTask
         {
             for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
             {
-                if (p.Data.Equals(data))
+                if (p.Data != null && data != null && p.Data.Equals(data) || p.Data == null && data == null)
                 {
                     if (prev != null)
                     {
@@ -140,12 +150,11 @@ namespace ListTask
         public void Reverse()
         {
             ListItem<T> prev = null;
-            ListItem<T> next = null;
             ListItem<T> current = Head;
 
             while (current != null)
             {
-                next = current.Next;
+                ListItem<T> next = current.Next;
                 current.Next = prev;
                 prev = current;
                 current = next;
@@ -157,13 +166,18 @@ namespace ListTask
         public SinglyLinkedList<T> Copy()
         {
             SinglyLinkedList<T> listCopy = new SinglyLinkedList<T>();
+            ListItem<T> current = Head;
+            ListItem<T> prev = null;
+            listCopy.Head = Head;
 
-            for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
+            while (current != null)
             {
-                listCopy.Add(p.Data);
+                ListItem<T> listItem = new ListItem<T>(current.Data, prev);
+                listCopy.Count++;
+                prev = current;
+                current = current.Next;
             }
 
-            listCopy.Reverse();
             return listCopy;
         }
 

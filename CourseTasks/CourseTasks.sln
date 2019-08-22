@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListHome3", "ArrayList
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListTask", "ListTask\ListTask.csproj", "{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTableTask", "HashTableTask\HashTableTask.csproj", "{94EC5C1A-22E5-410B-9E5D-61ACCA19348F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListTask", "ArrayListTask\ArrayListTask.csproj", "{73F18215-757C-468E-93B6-A22F422F91BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +57,14 @@ Global
 		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{233BCF9A-F505-4B6F-8EF6-E4F553A5DE28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94EC5C1A-22E5-410B-9E5D-61ACCA19348F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94EC5C1A-22E5-410B-9E5D-61ACCA19348F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94EC5C1A-22E5-410B-9E5D-61ACCA19348F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94EC5C1A-22E5-410B-9E5D-61ACCA19348F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F18215-757C-468E-93B6-A22F422F91BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F18215-757C-468E-93B6-A22F422F91BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F18215-757C-468E-93B6-A22F422F91BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F18215-757C-468E-93B6-A22F422F91BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

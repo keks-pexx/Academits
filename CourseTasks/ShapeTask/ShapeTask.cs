@@ -17,7 +17,7 @@ namespace ShapeTask
             }
 
             Array.Sort(shapes, new AreaComparer());
-            Console.WriteLine("Максимальная площадь у фигуры: " + shapes[shapes.Length - 1]);
+            Console.  WriteLine("Максимальная площадь у фигуры: " + shapes[shapes.Length - 1]);
 
             Array.Sort(shapes, new PerimeterComparer());
             Console.WriteLine("Второй по величине периметр у  фигуры: " + shapes[shapes.Length - 2]);

@@ -8,14 +8,14 @@ namespace ListTask
         {
             SinglyLinkedList<string> myList = new SinglyLinkedList<string>();
 
-            myList.Add("Значение 6");
-            myList.Add("Значение 5");
-            myList.Add("Значение 4");
-            myList.Add("Значение 3");
-            myList.Add("Значение 2");
-            myList.Add("Значение 1");
+            myList.AddToBegin("Значение 6");
+            myList.AddToBegin("Значение 5");
+            myList.AddToBegin("Значение 4");
+            myList.AddToBegin("Значение 3");
+            myList.AddToBegin("Значение 2");
+            myList.AddToBegin("Значение 1");
 
-            Console.WriteLine("В списке {0} элемент(ов)", myList.GetSize());
+            Console.WriteLine("В списке {0} элемент(ов)", myList.Count);
             Console.WriteLine("Первый элемент: {0}", myList.GetFirstValue());
             Console.WriteLine("Пятый элемент: {0}", myList.Change(4, "Значение 5 новое"));
             Console.WriteLine("Замена пятого элемента на: {0}", myList.Delete(4));

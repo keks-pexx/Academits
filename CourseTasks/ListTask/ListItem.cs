@@ -1,6 +1,6 @@
 ﻿namespace ListTask
 {
-   class ListItem<T>
+    class ListItem<T>
     {
         public T Data { get; set; }
         public ListItem<T> Next { get; set; }
