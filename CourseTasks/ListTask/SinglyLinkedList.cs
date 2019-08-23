@@ -177,7 +177,7 @@ namespace ListTask
                 prev = current;
                 current = current.Next;
             }
-
+            
             return listCopy;
         }
 
