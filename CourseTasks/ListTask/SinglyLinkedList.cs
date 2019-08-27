@@ -6,7 +6,7 @@ namespace ListTask
     class SinglyLinkedList<T>
     {
         private ListItem<T> Head { get; set; }
-        public int Count { get; set; }
+        public int Count { get; private set; }
 
         public T GetFirstValue()
         {
@@ -20,65 +20,73 @@ namespace ListTask
 
         private ListItem<T> Iterate(int index)
         {
-            if (index > Count || index < 0)
+            if (index > Count - 1 || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
             int n = 0;
+            ListItem<T> result = Head;
 
             for (ListItem<T> p = Head; p != null; p = p.Next)
             {
                 if (n == index)
                 {
-                    return p;
+                    result = p;
                 }
+
                 n++;
             }
 
-            return null;
+            return result;
         }
 
         public T GetValue(int index)
         {
-            return Iterate(index).Data; ;
+            return Iterate(index).Data;
         }
 
         public T Change(int index, T data)
         {
-            T oldValue = default(T);
-            int n = 0;
-
-            for (ListItem<T> p = Head; p != null; p = p.Next)
+            if (index > Count - 1 || index < 0)
             {
-                if (n == index)
-                {
-                    oldValue = p.Data;
-                    p.Data = data;
-                }
-
-                n++;
+                throw new IndexOutOfRangeException("index выходит за границы списка");
             }
+
+            T oldValue = data;
+            oldValue = Iterate(index).Data;
+            Iterate(index).Data = data;
 
             return oldValue;
         }
 
         public T Delete(int index)
         {
-            T oldValue = default(T);
-            int n = 0;
-
-            for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
+            if (Count == 0)
             {
-                if (n == index)
-                {
-                    oldValue = p.Data;
-                    prev.Next = p.Next;
-                    Count--;
-                }
-
-                n++;
+                throw new Exception("Список пуст");
             }
+
+            if (index > Count - 1 || index < 0)
+            {
+                throw new IndexOutOfRangeException("index выходит за границы списка");
+            }
+
+            T oldValue = Head.Data;
+
+            if (index == 0)
+            {
+                oldValue = Head.Data;
+                Head = Head.Next;
+            }
+            else
+            {
+                oldValue = Iterate(index).Data;
+                Iterate(index - 1).Next = Iterate(index + 1);
+            }
+
+            Count--;
+
 
             return oldValue;
         }
@@ -101,17 +109,25 @@ namespace ListTask
             ListItem<T> listItem = new ListItem<T>(data);
             int n = 0;
 
-            for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
+            if (index == 0)
             {
-                if (n == index)
+                listItem.Next = Head;
+                Head = listItem;
+            }
+            else
+            {
+                for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
                 {
-                    prev.Next = listItem;
-                    listItem.Next = p;
-                    Count++;
-                    break;
-                }
+                    if (n == index)
+                    {
+                        prev.Next = listItem;
+                        listItem.Next = p;
+                        Count++;
+                        break;
+                    }
 
-                n++;
+                    n++;
+                }
             }
         }
 
@@ -119,7 +135,7 @@ namespace ListTask
         {
             for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
             {
-                if (p.Data != null && data != null && p.Data.Equals(data) || p.Data == null && data == null)
+                if (Equals(data, p.Data))
                 {
                     if (prev != null)
                     {
@@ -140,6 +156,11 @@ namespace ListTask
 
         public T DeleteHead()
         {
+            if (Count == 0)
+            {
+                throw new IndexOutOfRangeException("Список пуст");
+            }
+
             T oldValue = Head.Data;
             Head = Head.Next;
             Count--;
@@ -174,10 +195,10 @@ namespace ListTask
             {
                 ListItem<T> listItem = new ListItem<T>(current.Data, prev);
                 listCopy.Count++;
-                prev = current;
+                prev = listItem;
                 current = current.Next;
             }
-            
+
             return listCopy;
         }
 
