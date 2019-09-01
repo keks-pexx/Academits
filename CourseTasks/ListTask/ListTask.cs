@@ -18,6 +18,7 @@ namespace ListTask
             Console.WriteLine("В списке {0} элемент(ов)", myList.Count);
             Console.WriteLine("Первый элемент: {0}", myList.GetFirstValue());
             Console.WriteLine("Пятый элемент: {0}", myList.Change(4, "Значение 5 новое"));
+            Console.WriteLine(myList);
             Console.WriteLine("Замена пятого элемента на: {0}", myList.Delete(4));
             Console.WriteLine("Удалили пятый элемент и получили такой список: {0}", myList);
             myList.AddByIndex(4, "Значение 5");

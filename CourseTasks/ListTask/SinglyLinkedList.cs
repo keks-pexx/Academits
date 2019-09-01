@@ -12,62 +12,66 @@ namespace ListTask
         {
             if (Count == 0)
             {
-                throw new IndexOutOfRangeException("Список пуст");
+                throw new ArgumentException("Список пуст");
             }
 
             return Head.Data;
         }
 
-        private ListItem<T> Iterate(int index)
+        private ListItem<T> IterateToIndex(int index)
         {
-            if (index > Count - 1 || index < 0)
+            if (index >= Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
             int n = 0;
-            ListItem<T> result = Head;
 
             for (ListItem<T> p = Head; p != null; p = p.Next)
             {
                 if (n == index)
                 {
-                    result = p;
+                    return p;
                 }
 
                 n++;
             }
 
-            return result;
+            return null;
         }
 
         public T GetValue(int index)
         {
-            return Iterate(index).Data;
+            return IterateToIndex(index).Data;
         }
 
         public T Change(int index, T data)
         {
-            if (index > Count - 1 || index < 0)
+            if (index >= Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
-            T oldValue = data;
-            oldValue = Iterate(index).Data;
-            Iterate(index).Data = data;
+            int n = 0;
+
+            T oldValue = Head.Data;
+            for (ListItem<T> p = Head; p != null; p = p.Next)
+            {
+                if (n == index)
+                {
+                    oldValue = p.Data;
+                    p.Data = data;
+                }
+
+                n++;
+            }
 
             return oldValue;
         }
 
         public T Delete(int index)
         {
-            if (Count == 0)
-            {
-                throw new Exception("Список пуст");
-            }
-
-            if (index > Count - 1 || index < 0)
+            if (index >= Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
@@ -76,18 +80,16 @@ namespace ListTask
 
             if (index == 0)
             {
-                oldValue = Head.Data;
                 Head = Head.Next;
             }
             else
             {
-                oldValue = Iterate(index).Data;
-                Iterate(index - 1).Next = Iterate(index + 1);
+                ListItem<T> p = IterateToIndex(index - 1);
+                oldValue = p.Next.Data;
+                p.Next = p.Next.Next;
             }
 
             Count--;
-
-
             return oldValue;
         }
 
@@ -101,7 +103,7 @@ namespace ListTask
 
         public void AddByIndex(int index, T data)
         {
-            if (index > Count - 1 && index < 0)
+            if (index >= Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
@@ -114,20 +116,18 @@ namespace ListTask
                 listItem.Next = Head;
                 Head = listItem;
             }
+            else if (index == Count)
+            {
+                ListItem<T> prev = IterateToIndex(index - 1);
+                prev.Next = listItem;
+                Count++;
+            }
             else
             {
-                for (ListItem<T> p = Head, prev = null; p != null; prev = p, p = p.Next)
-                {
-                    if (n == index)
-                    {
-                        prev.Next = listItem;
-                        listItem.Next = p;
-                        Count++;
-                        break;
-                    }
-
-                    n++;
-                }
+                ListItem<T> prev = IterateToIndex(index - 1);
+                listItem.Next = prev.Next;
+                prev.Next = listItem;
+                Count++;
             }
         }
 
@@ -187,21 +187,30 @@ namespace ListTask
         public SinglyLinkedList<T> Copy()
         {
             SinglyLinkedList<T> listCopy = new SinglyLinkedList<T>();
-            ListItem<T> current = Head;
-            ListItem<T> prev = null;
-            listCopy.Head = Head;
 
-            while (current != null)
+            if (Count == 0)
             {
-                ListItem<T> listItem = new ListItem<T>(current.Data, prev);
-                listCopy.Count++;
-                prev = listItem;
-                current = current.Next;
+                return listCopy;
             }
+            else
+            {
+                listCopy.Head = new ListItem<T>(Head.Data);
+                listCopy.Count = Count;
+                ListItem<T> prev = listCopy.Head;
+                ListItem<T> current = Head.Next;
 
-            return listCopy;
+                while (current != null)
+                {
+                    ListItem<T> listItem = new ListItem<T>(current.Data);
+                    prev.Next = listItem;
+                    prev = listItem;
+                    current = current.Next;
+                }
+                               
+                return listCopy;
+            }
         }
-
+        
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
