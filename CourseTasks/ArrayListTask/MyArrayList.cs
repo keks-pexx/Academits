@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ArrayList
 {
-    class МyList<T> : IList<T>
+    class МyArrayList<T> : IList<T>
     {
         public int Сapacity { get; set; }
         private int ModCount;
@@ -22,7 +22,6 @@ namespace ArrayList
 
                 return Contents[index];
             }
-
             set
             {
                 if (index >= Count || index < 0)
@@ -36,7 +35,7 @@ namespace ArrayList
 
         public int Count { get; private set; }
 
-        public МyList()
+        public МyArrayList()
         {
             Count = 0;
             Сapacity = 10;
@@ -127,36 +126,43 @@ namespace ArrayList
                     return i;
                 }
             }
+
             return -1;
         }
 
         public void Insert(int index, T data)
         {
-            if (index > Count || index < 0)
+            if (index >= Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
             Count++;
             ModCount++;
-            T[] contentsTmp = new T[Сapacity];
+            T[] contentsTemp = new T[Сapacity];
 
             if (Count >= Contents.Length)
             {
-                contentsTmp = new T[Сapacity * 2];
+                contentsTemp = new T[Сapacity * 2];
             }
 
-            Array.Copy(Contents, 0, contentsTmp, 0, Contents.Length);
+            Array.Copy(Contents, 0, contentsTemp, 0, index);
+            Contents[index] = data;
+            Array.Copy(Contents, index, contentsTemp, index + 1, 3);
+            Contents = contentsTemp;
+            /*
+            Array.Copy(Contents, 0, contentsTemp, 0, Contents.Length);
 
             if ((Count + 1 <= Contents.Length) && (index < Count) && (index >= 0) || (index == 0))
             {
-                Array.Copy(Contents, index, contentsTmp, index + 1, Contents.Length);
-                Contents = contentsTmp;
+                Array.Copy(Contents, index, contentsTemp, index + 1, Contents.Length);
+                Contents = contentsTemp;
                 Contents[index] = data;
             }
 
-            Contents = contentsTmp;
+            Contents = contentsTemp;
             Contents[index] = data;
+            */
         }
 
         public bool Remove(T item)
@@ -204,15 +210,17 @@ namespace ArrayList
             }
 
             sb.Append("{ ");
-
-            foreach (T e in Contents)
+           
+            for (int i = 0; i < Count; i++)
             {
-                sb.Append(e);
+                sb.Append(Contents[i]);
                 sb.Append(", ");
             }
 
             sb.Remove(sb.Length - 2, 2);
             sb.Append(" }");
+            sb.Append(" Count:" + Count);
+            sb.Append(" Capacity:" + Сapacity);
 
             return sb.ToString();
         }

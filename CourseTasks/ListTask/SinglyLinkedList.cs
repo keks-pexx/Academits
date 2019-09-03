@@ -12,7 +12,7 @@ namespace ListTask
         {
             if (Count == 0)
             {
-                throw new ArgumentException("Список пуст");
+                throw new NullReferenceException("Список пуст");
             }
 
             return Head.Data;
@@ -52,19 +52,9 @@ namespace ListTask
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
-            int n = 0;
-
-            T oldValue = Head.Data;
-            for (ListItem<T> p = Head; p != null; p = p.Next)
-            {
-                if (n == index)
-                {
-                    oldValue = p.Data;
-                    p.Data = data;
-                }
-
-                n++;
-            }
+            ListItem<T> p = IterateToIndex(index);
+            T oldValue = p.Data;
+            p.Data = data;
 
             return oldValue;
         }
@@ -109,14 +99,13 @@ namespace ListTask
             }
 
             ListItem<T> listItem = new ListItem<T>(data);
-            int n = 0;
 
             if (index == 0)
             {
                 listItem.Next = Head;
                 Head = listItem;
             }
-            else if (index == Count)
+            else if (index == Count - 1)
             {
                 ListItem<T> prev = IterateToIndex(index - 1);
                 prev.Next = listItem;
@@ -158,7 +147,7 @@ namespace ListTask
         {
             if (Count == 0)
             {
-                throw new IndexOutOfRangeException("Список пуст");
+                throw new NullReferenceException("Список пуст");
             }
 
             T oldValue = Head.Data;
@@ -192,25 +181,23 @@ namespace ListTask
             {
                 return listCopy;
             }
-            else
-            {
-                listCopy.Head = new ListItem<T>(Head.Data);
-                listCopy.Count = Count;
-                ListItem<T> prev = listCopy.Head;
-                ListItem<T> current = Head.Next;
 
-                while (current != null)
-                {
-                    ListItem<T> listItem = new ListItem<T>(current.Data);
-                    prev.Next = listItem;
-                    prev = listItem;
-                    current = current.Next;
-                }
-                               
-                return listCopy;
+            listCopy.Head = new ListItem<T>(Head.Data);
+            listCopy.Count = Count;
+            ListItem<T> prev = listCopy.Head;
+            ListItem<T> current = Head.Next;
+
+            while (current != null)
+            {
+                ListItem<T> listItem = new ListItem<T>(current.Data);
+                prev.Next = listItem;
+                prev = listItem;
+                current = current.Next;
             }
+
+            return listCopy;
         }
-        
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
