@@ -16,19 +16,46 @@ namespace ArrayList
             myArrayList.Add("Значение7");
             myArrayList.Add("Значение8");
             myArrayList.Add("Значение9");
+
             Console.WriteLine("Список:\n{0}\n", myArrayList);
+
             myArrayList.Insert(4, "Значение4");
             Console.WriteLine("Вставка значения по индексу 4 \n{0}\n", myArrayList);
-            /*
-            myArrayList.Remove("Значение8");
-            Console.WriteLine("Удаление Значение8: \n{0}\n", myArrayList);
+            myArrayList.Insert(10, "Значение10");
+            Console.WriteLine("Вставка значения по индексу 10 \n{0}\n", myArrayList);
+
+            myArrayList.TrimExcess();
+            Console.WriteLine("Урезание списка \n{0}\n", myArrayList);
+
+            myArrayList.Insert(0, "Значение0новое");
+            Console.WriteLine("Вставка значения по индексу 0 \n{0}\n", myArrayList);
+
+            string forDelete = "Значение8";
+            if (myArrayList.Remove(forDelete))
+            {
+                Console.WriteLine("Удаление {0} \n{1}\n", forDelete, myArrayList);
+            }
+            else
+            {
+                Console.WriteLine("{0} нет в списке", forDelete);
+            }
+
             myArrayList.RemoveAt(2);
-            Console.WriteLine("Удалим элемент по индексу 2 получим: \n{0}\n", myArrayList);
-            Console.WriteLine("Проверка на вхождение Значение6: \n{0}", myArrayList.Contains("Значение6"));
-            Console.WriteLine("Проверка на вхождение null: \n{0}", myArrayList.Contains(null));
+            Console.WriteLine("Удаление значения по индексу 2: \n{0}\n", myArrayList);
+
+            string forCheck = "Значение6";
+            if (myArrayList.Contains(forCheck))
+            {
+                Console.WriteLine("{0} входит в список\n", forCheck);
+            }
+            else
+            {
+                Console.WriteLine("{0} не входит в список\n", forCheck);
+            }
+
             myArrayList.Clear();
             Console.WriteLine("Очиска списка: {0}", myArrayList);
-            */
+
             Console.ReadKey();
         }
     }
