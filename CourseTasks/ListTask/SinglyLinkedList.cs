@@ -12,7 +12,7 @@ namespace ListTask
         {
             if (Count == 0)
             {
-                throw new NullReferenceException("Список пуст");
+                throw new InvalidOperationException("Список пуст");
             }
 
             return Head.Data;
@@ -93,7 +93,7 @@ namespace ListTask
 
         public void AddByIndex(int index, T data)
         {
-            if (index >= Count || index < 0)
+            if (index > Count || index < 0)
             {
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
@@ -104,12 +104,6 @@ namespace ListTask
             {
                 listItem.Next = Head;
                 Head = listItem;
-            }
-            else if (index == Count - 1)
-            {
-                ListItem<T> prev = IterateToIndex(index - 1);
-                prev.Next = listItem;
-                Count++;
             }
             else
             {
@@ -147,7 +141,7 @@ namespace ListTask
         {
             if (Count == 0)
             {
-                throw new NullReferenceException("Список пуст");
+                throw new InvalidOperationException("Список пуст");
             }
 
             T oldValue = Head.Data;
