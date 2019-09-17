@@ -7,7 +7,23 @@ namespace ArrayList
 {
     class МyArrayList<T> : IList<T>
     {
-        public int Capacity { get; private set; }
+        public int Capacity
+        {
+            get
+            {
+                return contents.Length;
+            }
+
+            set
+            {
+                if (value < 1)
+                {
+                    throw new IndexOutOfRangeException("размер списка не может быть меньше 1");
+                }
+                Capacity = value;
+            }
+        }
+
         private int modCount;
         private T[] contents;
 
@@ -107,11 +123,11 @@ namespace ArrayList
         {
             int modCount = this.modCount;
 
-            for (int i = 0; i < contents.Length; ++i)
+            for (int i = 0; i < Count; i++)
             {
                 if (modCount != this.modCount)
                 {
-                    throw new InvalidOperationException("Список был изменен!");
+                    throw new InvalidOperationException("Список был изменен");
                 }
 
                 yield return contents[i];
@@ -152,6 +168,8 @@ namespace ArrayList
             if (Count == index)
             {
                 contents[index] = data;
+                Count++;
+                modCount++;
                 return;
             }
 
