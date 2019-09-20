@@ -39,7 +39,13 @@ namespace HashTableTask
             return true;
         }
 
-        public bool IsReadOnly { get; }
+        public bool IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {

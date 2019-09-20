@@ -16,11 +16,15 @@ namespace ArrayList
 
             set
             {
-                if (value < 1)
+                if (Capacity != value)
                 {
-                    throw new IndexOutOfRangeException("размер списка не может быть меньше 1");
+                    if (value < Capacity)
+                    {
+                        throw new IndexOutOfRangeException("значение меньше размера списка");
+                    }
+                    Capacity = value;
+                    Array.Resize(ref contents, Capacity);
                 }
-                Capacity = value;
             }
         }
 
@@ -61,7 +65,6 @@ namespace ArrayList
 
         public void TrimExcess()
         {
-            Array.Resize(ref contents, Count);
             Capacity = Count;
         }
 
@@ -78,7 +81,6 @@ namespace ArrayList
             if (Count == contents.Length)
             {
                 Capacity *= 2;
-                Array.Resize(ref contents, Capacity);
             }
 
             contents[Count] = data;
@@ -90,7 +92,6 @@ namespace ArrayList
         {
             Count = 0;
             Capacity = 10;
-            Array.Resize(ref contents, Capacity);
             modCount++;
         }
 
@@ -161,8 +162,7 @@ namespace ArrayList
 
             if (Count == contents.Length)
             {
-                Capacity *= 2;
-                Array.Resize(ref contents, Capacity);
+                Capacity *= 2;             
             }
 
             if (Count == index)
@@ -188,7 +188,7 @@ namespace ArrayList
                 RemoveAt(index);
                 return true;
             }
-                      
+
             return false;
         }
 
