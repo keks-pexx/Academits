@@ -7,6 +7,8 @@ namespace ArrayList
 {
     class МyArrayList<T> : IList<T>
     {
+        private const int DefaultCapacity = 10;
+
         public int Capacity
         {
             get
@@ -18,12 +20,13 @@ namespace ArrayList
             {
                 if (Capacity != value)
                 {
-                    if (value < Capacity)
+                    if (value < Count)
                     {
-                        throw new IndexOutOfRangeException("значение меньше размера списка");
+                        throw new ArgumentOutOfRangeException("значение меньше размера списка");
                     }
-                    Capacity = value;
-                    Array.Resize(ref contents, Capacity);
+                   
+                    Array.Resize(ref contents, value);
+                    Capacity = value;                    
                 }
             }
         }
@@ -58,9 +61,9 @@ namespace ArrayList
         public МyArrayList()
         {
             Count = 0;
-            Capacity = 10;
             modCount = 0;
-            contents = new T[Capacity];
+            contents = new T[DefaultCapacity];
+            Capacity = DefaultCapacity;
         }
 
         public void TrimExcess()
@@ -78,9 +81,9 @@ namespace ArrayList
 
         public void Add(T data)
         {
-            if (Count == contents.Length)
+            if (Count == Capacity)
             {
-                Capacity *= 2;
+                Capacity *= 2;              
             }
 
             contents[Count] = data;
@@ -91,7 +94,7 @@ namespace ArrayList
         public void Clear()
         {
             Count = 0;
-            Capacity = 10;
+            Capacity = DefaultCapacity;
             modCount++;
         }
 
@@ -160,9 +163,9 @@ namespace ArrayList
                 throw new IndexOutOfRangeException("index выходит за границы списка");
             }
 
-            if (Count == contents.Length)
+            if (Count == Capacity)
             {
-                Capacity *= 2;             
+                Capacity *= 2;                
             }
 
             if (Count == index)
