@@ -25,8 +25,7 @@ namespace ArrayList
                         throw new ArgumentOutOfRangeException("значение меньше размера списка");
                     }
                    
-                    Array.Resize(ref contents, value);
-                    Capacity = value;                    
+                    Array.Resize(ref contents, value);                                      
                 }
             }
         }
@@ -63,7 +62,7 @@ namespace ArrayList
             Count = 0;
             modCount = 0;
             contents = new T[DefaultCapacity];
-            Capacity = DefaultCapacity;
+            //Capacity = DefaultCapacity;
         }
 
         public void TrimExcess()
