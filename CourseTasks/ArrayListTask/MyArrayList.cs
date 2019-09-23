@@ -61,8 +61,7 @@ namespace ArrayList
         {
             Count = 0;
             modCount = 0;
-            contents = new T[DefaultCapacity];
-            //Capacity = DefaultCapacity;
+            contents = new T[DefaultCapacity];           
         }
 
         public void TrimExcess()
