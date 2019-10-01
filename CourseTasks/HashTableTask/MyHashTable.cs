@@ -7,8 +7,8 @@ namespace HashTableTask
 {
     class MyHashTable<T> : ICollection<T>
     {
-        private List<T>[] contents = new List<T>[100];
-        private int modCount = 0;   
+        private List<T>[] contents { get; }
+        private int modCount;   
         public int Count { get; private set; }
 
         public MyHashTable(params T[] data)
@@ -23,9 +23,9 @@ namespace HashTableTask
 
         public MyHashTable(int capacity)
         {
-            if (capacity < 0)
+            if (capacity < 1)
             {
-                throw new ArgumentOutOfRangeException("размер не может быть меньше 0");
+                throw new ArgumentOutOfRangeException("размер не может быть меньше 1");
             }
 
             contents = new List<T>[capacity];
@@ -72,7 +72,7 @@ namespace HashTableTask
         {
             var index = GetIndex(item);
 
-            if (ReferenceEquals(contents[index], null) || contents[index].Count == 0)
+            if (ReferenceEquals(contents[index], null))
             {
                 return false;
             }
