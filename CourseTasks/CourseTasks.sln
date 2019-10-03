@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrayListTask", "ArrayListT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaTask", "LambdaTask\LambdaTask.csproj", "{D401BDEF-2CC0-46ED-A5AD-EAC67476B916}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Minesweeper", "Minesweeper", "{2F92237F-505B-4FDD-BBF9-B3E103019A34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinesweeperTask", "MinesweeperTask\MinesweeperTask.csproj", "{38BEC1E8-1FEE-4D6B-98A6-544A7177B1D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +75,10 @@ Global
 		{D401BDEF-2CC0-46ED-A5AD-EAC67476B916}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D401BDEF-2CC0-46ED-A5AD-EAC67476B916}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D401BDEF-2CC0-46ED-A5AD-EAC67476B916}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BEC1E8-1FEE-4D6B-98A6-544A7177B1D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BEC1E8-1FEE-4D6B-98A6-544A7177B1D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BEC1E8-1FEE-4D6B-98A6-544A7177B1D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BEC1E8-1FEE-4D6B-98A6-544A7177B1D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +87,7 @@ Global
 		{9AB812A6-93BE-42B4-A7C1-F97B0144D918} = {2E05DA95-AAFC-4BB2-A480-80C13E790A12}
 		{99DAFFB3-9C0F-4D33-B0BF-0016AF5858A7} = {2E05DA95-AAFC-4BB2-A480-80C13E790A12}
 		{79A537EE-7CAA-4ED8-B441-E1043F63DDE7} = {2E05DA95-AAFC-4BB2-A480-80C13E790A12}
+		{38BEC1E8-1FEE-4D6B-98A6-544A7177B1D9} = {2F92237F-505B-4FDD-BBF9-B3E103019A34}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {193BCC1E-0BF5-4C69-94F8-F44E8B03BF89}

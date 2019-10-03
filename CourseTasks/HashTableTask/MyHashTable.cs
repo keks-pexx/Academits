@@ -7,7 +7,7 @@ namespace HashTableTask
 {
     class MyHashTable<T> : ICollection<T>
     {
-        private readonly List<T>[] items = new List<T>[100];
+        private readonly List<T>[] contents;
         private int modCount;   
         public int Count { get; private set; }
 
@@ -17,8 +17,6 @@ namespace HashTableTask
             {
                 Add(e);
             }
-
-            Count = data.Length;
         }
 
         public MyHashTable(int capacity)
