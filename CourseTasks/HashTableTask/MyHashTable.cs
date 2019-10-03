@@ -7,7 +7,7 @@ namespace HashTableTask
 {
     class MyHashTable<T> : ICollection<T>
     {
-        private List<T>[] contents { get; }
+        private readonly List<T>[] items = new List<T>[100];
         private int modCount;   
         public int Count { get; private set; }
 
