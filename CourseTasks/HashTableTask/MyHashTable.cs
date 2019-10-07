@@ -13,6 +13,8 @@ namespace HashTableTask
 
         public MyHashTable(params T[] data)
         {
+            Count = 0;
+
             foreach (var e in data)
             {
                 Add(e);
